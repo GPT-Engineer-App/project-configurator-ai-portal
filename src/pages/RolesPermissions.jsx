@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { toast } from "sonner";
 
@@ -15,28 +14,40 @@ const predefinedRoles = [
   "Dipendente Azienda",
 ];
 
+const availableFunctions = [
+  "Gestisci Documenti",
+  "Gestisci Utenti",
+  "Attività",
+  "News",
+  "Chat",
+  "Calendario",
+  "Gestione Sedi",
+  "Configurazioni",
+];
+
 const RolesPermissions = () => {
   const [roles, setRoles] = useState([
-    { id: 1, name: "Admin", permissions: ["read", "write", "delete"] },
-    { id: 2, name: "User", permissions: ["read"] },
+    { id: 1, name: "Admin", permissions: ["Gestisci Documenti", "Gestisci Utenti", "Attività"] },
+    { id: 2, name: "User", permissions: ["Chat"] },
   ]);
-  const [newRole, setNewRole] = useState({ name: "", permissions: "" });
+  const [newRole, setNewRole] = useState({ name: "", permissions: [] });
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleCheckboxChange = (functionName) => {
     setNewRole((prevRole) => ({
       ...prevRole,
-      [name]: value,
+      permissions: prevRole.permissions.includes(functionName)
+        ? prevRole.permissions.filter((perm) => perm !== functionName)
+        : [...prevRole.permissions, functionName],
     }));
   };
 
   const handleAddRole = () => {
     setRoles((prevRoles) => [
       ...prevRoles,
-      { id: prevRoles.length + 1, ...newRole, permissions: newRole.permissions.split(",") },
+      { id: prevRoles.length + 1, ...newRole },
     ]);
-    setNewRole({ name: "", permissions: "" });
+    setNewRole({ name: "", permissions: [] });
     setIsDialogOpen(false);
     toast.success("Role added successfully!");
   };
@@ -58,30 +69,39 @@ const RolesPermissions = () => {
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                   Nome Ruolo
                 </label>
-                <Select onValueChange={(value) => setNewRole((prevRole) => ({ ...prevRole, name: value }))}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Seleziona un ruolo" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {predefinedRoles.map((role) => (
-                      <SelectItem key={role} value={role}>
-                        {role}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <select
+                  id="name"
+                  name="name"
+                  value={newRole.name}
+                  onChange={(e) => setNewRole({ ...newRole, name: e.target.value })}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                >
+                  <option value="">Seleziona un ruolo</option>
+                  {predefinedRoles.map((role) => (
+                    <option key={role} value={role}>
+                      {role}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div>
-                <label htmlFor="permissions" className="block text-sm font-medium text-gray-700">
-                  Permessi (separati da virgola)
+                <label className="block text-sm font-medium text-gray-700">
+                  Permessi
                 </label>
-                <Input
-                  id="permissions"
-                  name="permissions"
-                  value={newRole.permissions}
-                  onChange={handleChange}
-                  className="mt-1"
-                />
+                <div className="mt-2 space-y-2">
+                  {availableFunctions.map((functionName) => (
+                    <div key={functionName} className="flex items-center">
+                      <Checkbox
+                        id={functionName}
+                        checked={newRole.permissions.includes(functionName)}
+                        onCheckedChange={() => handleCheckboxChange(functionName)}
+                      />
+                      <label htmlFor={functionName} className="ml-2 block text-sm text-gray-900">
+                        {functionName}
+                      </label>
+                    </div>
+                  ))}
+                </div>
               </div>
               <Button onClick={handleAddRole}>Salva</Button>
             </div>
