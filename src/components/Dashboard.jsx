@@ -45,6 +45,70 @@ const Dashboard = () => {
           <p>{data.virtualAssistants}</p>
         </CardContent>
       </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Numero di documenti gestiti</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>{data.documentsManaged}</p>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Numero di utenti attivi</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>{data.activeUsers}</p>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Numero di attività completate</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>{data.completedTasks}</p>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Numero di news pubblicate</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>{data.publishedNews}</p>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Numero di messaggi in chat</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>{data.chatMessages}</p>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Eventi nel calendario</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>{data.calendarEvents}</p>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Numero di sedi gestite</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>{data.managedLocations}</p>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Configurazioni effettuate</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>{data.configurationsMade}</p>
+        </CardContent>
+      </Card>
     </div>
   );
 };
