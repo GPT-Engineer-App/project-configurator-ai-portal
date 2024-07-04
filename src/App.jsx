@@ -16,27 +16,27 @@ export const navItems = [
   {
     title: "Home",
     to: "/",
-    icon: <Home className="h-4 w-4" />,
+    icon: <Home className="h-6 w-6 text-blue-500 shadow-lg" />,
   },
   {
     title: "Personalizza Label e Testo",
     to: "/customize-labels",
-    icon: <Edit className="h-4 w-4" />,
+    icon: <Edit className="h-6 w-6 text-green-500 shadow-lg" />,
   },
   {
     title: "Ruoli e autorizzazioni",
     to: "/roles-permissions",
-    icon: <Shield className="h-4 w-4" />,
+    icon: <Shield className="h-6 w-6 text-red-500 shadow-lg" />,
   },
   {
     title: "Analisi documenti",
     to: "/document-analysis",
-    icon: <FileText className="h-4 w-4" />,
+    icon: <FileText className="h-6 w-6 text-yellow-500 shadow-lg" />,
   },
   {
     title: "Assistenti virtuali evoluti",
     to: "/virtual-assistants",
-    icon: <User className="h-4 w-4" />,
+    icon: <User className="h-6 w-6 text-purple-500 shadow-lg" />,
   },
 ];
 

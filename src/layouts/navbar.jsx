@@ -34,7 +34,7 @@ const DesktopNav = () => (
       to="/"
       className="flex items-center gap-2 text-lg font-semibold md:text-base"
     >
-      <Package2 className="h-6 w-6" />
+      <Package2 className="h-6 w-6 text-indigo-500 shadow-lg" />
       <span className="sr-only">Acme Inc</span>
     </NavItem>
     {navItems.map((item) => (
@@ -59,7 +59,7 @@ const MobileNav = () => (
           to="/"
           className="flex items-center gap-2 text-lg font-semibold"
         >
-          <Package2 className="h-6 w-6" />
+          <Package2 className="h-6 w-6 text-indigo-500 shadow-lg" />
           <span className="sr-only">Acme Inc</span>
         </NavItem>
         {navItems.map((item) => (
@@ -76,7 +76,7 @@ const UserMenu = () => (
   <DropdownMenu>
     <DropdownMenuTrigger asChild>
       <Button variant="secondary" size="icon" className="rounded-full">
-        <CircleUser className="h-5 w-5" />
+        <CircleUser className="h-6 w-6 text-gray-500 shadow-lg" />
         <span className="sr-only">Toggle user menu</span>
       </Button>
     </DropdownMenuTrigger>
