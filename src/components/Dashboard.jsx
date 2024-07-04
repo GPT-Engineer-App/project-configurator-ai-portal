@@ -37,43 +37,47 @@ const Dashboard = () => {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <Card>
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <Card className="col-span-2">
         <CardHeader>
           <CardTitle>Bar Chart</CardTitle>
         </CardHeader>
         <CardContent>
-          <BarChart width={500} height={300} data={barData}>
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="value" fill="#8884d8" />
-          </BarChart>
+          <div className="w-full overflow-x-auto">
+            <BarChart width={500} height={300} data={barData}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="value" fill="#8884d8" />
+            </BarChart>
+          </div>
         </CardContent>
       </Card>
-      <Card>
+      <Card className="col-span-2">
         <CardHeader>
           <CardTitle>Pie Chart</CardTitle>
         </CardHeader>
         <CardContent>
-          <PieChart width={400} height={400}>
-            <Pie
-              data={pieData}
-              cx={200}
-              cy={200}
-              labelLine={false}
-              label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-            >
-              {pieData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
+          <div className="w-full overflow-x-auto">
+            <PieChart width={400} height={400}>
+              <Pie
+                data={pieData}
+                cx={200}
+                cy={200}
+                labelLine={false}
+                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </div>
         </CardContent>
       </Card>
       <Card>
