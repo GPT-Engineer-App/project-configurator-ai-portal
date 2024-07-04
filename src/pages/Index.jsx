@@ -1,10 +1,10 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Dashboard from "@/components/Dashboard";
 
 const Index = () => {
   return (
-    <div className="text-center">
-      <h1 className="text-3xl">Your Blank Canvas</h1>
-      <p>Chat with the agent to start making edits.</p>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+      <Dashboard />
     </div>
   );
 };
