@@ -1,9 +1,19 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { toast } from "sonner";
+
+const predefinedRoles = [
+  "Super Admin",
+  "Admin",
+  "Operatore Interno",
+  "Operatore Esterno",
+  "Referente Principale",
+  "Dipendente Azienda",
+];
 
 const RolesPermissions = () => {
   const [roles, setRoles] = useState([
@@ -48,13 +58,18 @@ const RolesPermissions = () => {
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                   Nome Ruolo
                 </label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={newRole.name}
-                  onChange={handleChange}
-                  className="mt-1"
-                />
+                <Select onValueChange={(value) => setNewRole((prevRole) => ({ ...prevRole, name: value }))}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Seleziona un ruolo" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {predefinedRoles.map((role) => (
+                      <SelectItem key={role} value={role}>
+                        {role}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <label htmlFor="permissions" className="block text-sm font-medium text-gray-700">
