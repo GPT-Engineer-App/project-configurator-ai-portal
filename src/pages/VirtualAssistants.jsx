@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
@@ -82,16 +81,13 @@ const VirtualAssistants = () => {
               <label htmlFor="behavior" className="block text-sm font-medium text-gray-700">
                 Comportamento
               </label>
-              <Select onValueChange={(value) => setNewAssistant({ ...newAssistant, behavior: value })}>
-                <SelectTrigger className="mt-1">
-                  <SelectValue placeholder="Seleziona comportamento" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Behavior 1">Behavior 1</SelectItem>
-                  <SelectItem value="Behavior 2">Behavior 2</SelectItem>
-                  <SelectItem value="Behavior 3">Behavior 3</SelectItem>
-                </SelectContent>
-              </Select>
+              <Textarea
+                id="behavior"
+                name="behavior"
+                value={newAssistant.behavior}
+                onChange={handleChange}
+                className="mt-1"
+              />
             </div>
             <div>
               <label htmlFor="knowledge" className="block text-sm font-medium text-gray-700">
@@ -135,16 +131,11 @@ const VirtualAssistants = () => {
                   <TableRow key={assistant.id}>
                     <TableCell>{assistant.name}</TableCell>
                     <TableCell>
-                      <Select onValueChange={(value) => handleBehaviorChange(assistant.id, value)} value={assistant.behavior}>
-                        <SelectTrigger className="mt-1">
-                          <SelectValue placeholder="Seleziona comportamento" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Behavior 1">Behavior 1</SelectItem>
-                          <SelectItem value="Behavior 2">Behavior 2</SelectItem>
-                          <SelectItem value="Behavior 3">Behavior 3</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <Textarea
+                        value={assistant.behavior}
+                        onChange={(e) => handleBehaviorChange(assistant.id, e.target.value)}
+                        className="mt-1"
+                      />
                     </TableCell>
                     <TableCell>
                       <Textarea
